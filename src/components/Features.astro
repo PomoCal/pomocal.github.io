@@ -1,0 +1,132 @@
+---
+const features = [
+    {
+        icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" rx="8" fill="rgba(0,122,255,0.1)"/>
+      <path d="M16 9V16L20 20" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M10 22L8 24" stroke="#007AFF" stroke-width="2" stroke-linecap="round"/>
+      <path d="M22 22L24 24" stroke="#007AFF" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="16" cy="16" r="8" stroke="#007AFF" stroke-width="2"/>
+    </svg>`,
+        title: "동기화된 몰입",
+        description:
+            "타이머가 끝나면 시스템 캘린더에 자동으로 기록됩니다. 기록하는 번거로움 없이 오직 집중하세요.",
+        accent: "var(--color-accent-blue)",
+    },
+    {
+        icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" rx="8" fill="rgba(255,99,71,0.1)"/>
+      <path d="M11 8H21C21.5523 8 22 8.44772 22 9V24L16 20L10 24V9C10 8.44772 10.4477 8 11 8Z" stroke="#FF6347" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M13 13H19" stroke="#FF6347" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M13 16H17" stroke="#FF6347" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>`,
+        title: "도서 중심 학습",
+        description:
+            "Google Books API 연동으로 읽고 있는 책과 연계된 학습 목표를 설정하고 관리하세요.",
+        accent: "var(--color-tomato)",
+    },
+    {
+        icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" rx="8" fill="rgba(52,199,89,0.1)"/>
+      <path d="M10 22V16" stroke="#34C759" stroke-width="2" stroke-linecap="round"/>
+      <path d="M14 22V13" stroke="#34C759" stroke-width="2" stroke-linecap="round"/>
+      <path d="M18 22V17" stroke="#34C759" stroke-width="2" stroke-linecap="round"/>
+      <path d="M22 22V10" stroke="#34C759" stroke-width="2" stroke-linecap="round"/>
+    </svg>`,
+        title: "데이터 시각화",
+        description:
+            "카테고리별 요약 차트를 통해 내가 어디에 시간을 가장 많이 썼는지 한눈에 파악하세요.",
+        accent: "#34C759",
+    },
+];
+---
+
+<section id="features" class="section features">
+    <div class="container">
+        <div class="features-header reveal">
+            <span class="section-label">핵심 기능</span>
+            <h2 class="section-title">
+                집중에만 몰입할 수 있도록<br />나머지는 PomoCal이 합니다.
+            </h2>
+        </div>
+
+        <div class="features-grid">
+            {
+                features.map((feature, index) => (
+                    <div
+                        class={`card feature-card reveal reveal-delay-${index + 1}`}
+                    >
+                        <div class="feature-icon" set:html={feature.icon} />
+                        <h3 class="feature-title">{feature.title}</h3>
+                        <p class="feature-desc">{feature.description}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .features {
+        background: var(--color-white);
+    }
+
+    .features-header {
+        text-align: center;
+        margin-bottom: var(--space-3xl);
+    }
+
+    .features-header .section-title {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+    }
+
+    .feature-card {
+        text-align: center;
+        padding: var(--space-2xl) var(--space-xl);
+        background: var(--color-bg);
+        border: 1px solid transparent;
+    }
+
+    .feature-card:hover {
+        border-color: var(--color-border);
+        background: var(--color-white);
+    }
+
+    .feature-icon {
+        display: flex;
+        justify-content: center;
+        margin-bottom: var(--space-lg);
+    }
+
+    .feature-icon :global(svg) {
+        width: 56px;
+        height: 56px;
+    }
+
+    .feature-title {
+        font-size: var(--font-size-xl);
+        font-weight: 700;
+        margin-bottom: var(--space-sm);
+        color: var(--color-text-primary);
+    }
+
+    .feature-desc {
+        font-size: var(--font-size-sm);
+        color: var(--color-text-secondary);
+        line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+        .features-grid {
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+    }
+</style>

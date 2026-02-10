@@ -1,0 +1,196 @@
+---
+const steps = [
+    {
+        number: "01",
+        title: "계획하기",
+        subtitle: "Todo 작성",
+        description: "오늘의 학습 목표를 정리하고 할 일을 추가하세요.",
+        icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 7H20C20.5523 7 21 7.44772 21 8V22L14 18L7 22V8C7 7.44772 7.44772 7 8 7Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 12H18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 15H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+        color: "var(--color-accent-blue)",
+    },
+    {
+        number: "02",
+        title: "집중하기",
+        subtitle: "뽀모도로 실행",
+        description: "타이머를 시작하고 오직 집중에만 몰두하세요.",
+        icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M14 10V14L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+        color: "var(--color-tomato)",
+    },
+    {
+        number: "03",
+        title: "기록하기",
+        subtitle: "캘린더 자동 연동",
+        description: "완료된 세션이 시스템 캘린더에 자동 기록됩니다.",
+        icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="6" y="8" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 12H22" stroke="currentColor" stroke-width="1.5"/><path d="M10 6V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M18 6V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M12 16L14 18L17 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+        color: "#34C759",
+    },
+    {
+        number: "04",
+        title: "분석하기",
+        subtitle: "통계 확인",
+        description: "카테고리별 차트로 시간 투자를 한눈에 파악하세요.",
+        icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 20V15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 20V11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 20V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20 20V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+        color: "#AF52DE",
+    },
+];
+---
+
+<section id="workflow" class="section workflow">
+    <div class="container">
+        <div class="workflow-header reveal">
+            <span class="section-label">작동 원리</span>
+            <h2 class="section-title">
+                4단계로 완성되는<br />당신의 학습 루틴
+            </h2>
+            <p class="section-subtitle">
+                복잡한 설정 없이, 자연스러운 워크플로우를 경험하세요.
+            </p>
+        </div>
+
+        <div class="workflow-steps">
+            {
+                steps.map((step, index) => (
+                    <div
+                        class={`workflow-step reveal reveal-delay-${index + 1}`}
+                    >
+                        <div class="step-connector">
+                            <div
+                                class="step-icon"
+                                style={`color: ${step.color}; background: ${step.color}12;`}
+                                set:html={step.icon}
+                            />
+                            {index < steps.length - 1 && (
+                                <div class="step-line" />
+                            )}
+                        </div>
+                        <div class="step-content">
+                            <span
+                                class="step-number"
+                                style={`color: ${step.color};`}
+                            >
+                                {step.number}
+                            </span>
+                            <h3 class="step-title">{step.title}</h3>
+                            <span class="step-subtitle">{step.subtitle}</span>
+                            <p class="step-desc">{step.description}</p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .workflow {
+        background: var(--color-bg);
+    }
+
+    .workflow-header {
+        text-align: center;
+        margin-bottom: var(--space-3xl);
+    }
+
+    .workflow-header .section-subtitle {
+        margin: 0 auto;
+    }
+
+    .workflow-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-lg);
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .workflow-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+    }
+
+    .step-connector {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--space-lg);
+    }
+
+    .step-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .step-line {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: calc(100% + var(--space-lg));
+        height: 2px;
+        background: linear-gradient(
+            90deg,
+            var(--color-border) 0%,
+            var(--color-border) 50%,
+            transparent 100%
+        );
+        border-style: dashed;
+        transform: translateY(-50%);
+    }
+
+    .step-number {
+        font-size: var(--font-size-xs);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        margin-bottom: 2px;
+    }
+
+    .step-title {
+        font-size: var(--font-size-lg);
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: 2px;
+    }
+
+    .step-subtitle {
+        font-size: var(--font-size-xs);
+        color: var(--color-text-tertiary);
+        font-weight: 500;
+        margin-bottom: var(--space-sm);
+    }
+
+    .step-desc {
+        font-size: var(--font-size-sm);
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+        .workflow-steps {
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+        }
+
+        .step-line {
+            display: none;
+        }
+
+        .workflow-step {
+            flex-direction: row;
+            text-align: left;
+            gap: var(--space-lg);
+        }
+
+        .step-connector {
+            margin-bottom: 0;
+        }
+    }
+</style>

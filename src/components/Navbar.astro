@@ -1,0 +1,111 @@
+---
+
+---
+
+<nav class="navbar">
+    <div class="navbar-inner container">
+        <a href="/" class="navbar-brand">
+            <img src="/images/app-icon.png" alt="PomoCal" class="navbar-logo" />
+            <span class="navbar-name">PomoCal</span>
+        </a>
+        <div class="navbar-links">
+            <a href="#features" class="nav-link">기능</a>
+            <a href="#workflow" class="nav-link">작동 원리</a>
+            <a href="#trust" class="nav-link">기술 & 프라이버시</a>
+            <a
+                href="https://github.com/pxxguin/PomodoroCalendar/releases"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary btn-sm"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M8 1L8 11M8 11L4 7M8 11L12 7"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    <path
+                        d="M2 13H14"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"></path>
+                </svg>
+                Download
+            </a>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(245, 245, 247, 0.72);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .navbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 56px;
+    }
+
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .navbar-logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+    }
+
+    .navbar-name {
+        font-size: var(--font-size-lg);
+        font-weight: 700;
+        color: var(--color-text-primary);
+    }
+
+    .navbar-links {
+        display: flex;
+        align-items: center;
+        gap: var(--space-xl);
+    }
+
+    .nav-link {
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+        color: var(--color-text-secondary);
+        transition: color var(--transition-fast);
+    }
+
+    .nav-link:hover {
+        color: var(--color-text-primary);
+    }
+
+    .btn-sm {
+        padding: 8px 18px;
+        font-size: var(--font-size-sm);
+    }
+
+    @media (max-width: 768px) {
+        .nav-link {
+            display: none;
+        }
+    }
+</style>
