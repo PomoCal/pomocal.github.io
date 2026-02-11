@@ -1,8 +1,15 @@
 ---
-import { getLocaleFromUrl, t } from "../i18n/utils";
+import {
+    getLocaleFromUrl,
+    t,
+    getLocalizedPath,
+    getAlternateLocale,
+} from "../i18n/utils";
 
 const locale = getLocaleFromUrl(Astro.url);
 const i18n = t(locale);
+const altLocale = getAlternateLocale(locale);
+const altPath = getLocalizedPath(altLocale);
 ---
 
 <nav class="navbar">
@@ -20,6 +27,42 @@ const i18n = t(locale);
             >
             <a href="#tech" class="nav-link">{i18n.navbar.techPrivacy}</a>
             <a href="#faq" class="nav-link">{i18n.navbar.faq}</a>
+
+            <div class="navbar-divider-vertical"></div>
+
+            <a
+                href={altPath}
+                class="navbar-lang-switcher"
+                aria-label="Change Language"
+            >
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <circle
+                        cx="8"
+                        cy="8"
+                        r="6.5"
+                        stroke="currentColor"
+                        stroke-width="1.2"></circle>
+                    <path
+                        d="M1.5 8H14.5"
+                        stroke="currentColor"
+                        stroke-width="1.2"></path>
+                    <path
+                        d="M8 1.5C9.5 3 10.5 5.3 10.5 8C10.5 10.7 9.5 13 8 14.5"
+                        stroke="currentColor"
+                        stroke-width="1.2"></path>
+                    <path
+                        d="M8 1.5C6.5 3 5.5 5.3 5.5 8C5.5 10.7 6.5 13 8 14.5"
+                        stroke="currentColor"
+                        stroke-width="1.2"></path>
+                </svg>
+                <span>{altLocale.toUpperCase()}</span>
+            </a>
         </div>
     </div>
 </nav>
@@ -46,6 +89,36 @@ const i18n = t(locale);
         >
         <a href="#tech" class="mobile-menu-link">{i18n.navbar.techPrivacy}</a>
         <a href="#faq" class="mobile-menu-link">{i18n.navbar.faq}</a>
+
+        <div class="mobile-menu-divider"></div>
+
+        <a href={altPath} class="mobile-menu-link mobile-menu-lang">
+            <svg
+                width="20"
+                height="20"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <circle
+                    cx="8"
+                    cy="8"
+                    r="6.5"
+                    stroke="currentColor"
+                    stroke-width="1.2"></circle>
+                <path d="M1.5 8H14.5" stroke="currentColor" stroke-width="1.2"
+                ></path>
+                <path
+                    d="M8 1.5C9.5 3 10.5 5.3 10.5 8C10.5 10.7 9.5 13 8 14.5"
+                    stroke="currentColor"
+                    stroke-width="1.2"></path>
+                <path
+                    d="M8 1.5C6.5 3 5.5 5.3 5.5 8C5.5 10.7 6.5 13 8 14.5"
+                    stroke="currentColor"
+                    stroke-width="1.2"></path>
+            </svg>
+            <span>{altLocale === "en" ? "English" : "한국어"}</span>
+        </a>
     </div>
 </div>
 
@@ -132,9 +205,28 @@ const i18n = t(locale);
         color: var(--color-text-primary);
     }
 
-    .btn-sm {
-        padding: 8px 18px;
-        font-size: var(--font-size-sm);
+    .navbar-divider-vertical {
+        width: 1px;
+        height: 16px;
+        background: rgba(0, 0, 0, 0.1);
+        margin: 0 4px;
+    }
+
+    .navbar-lang-switcher {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: var(--font-size-xs);
+        font-weight: 600;
+        color: var(--color-text-secondary);
+        padding: 6px 10px;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+    }
+
+    .navbar-lang-switcher:hover {
+        color: var(--color-text-primary);
+        background: rgba(0, 0, 0, 0.05);
     }
 
     /* Hamburger button */
@@ -236,14 +328,6 @@ const i18n = t(locale);
             background 0.2s ease;
     }
 
-    .mobile-menu.is-open .mobile-menu-link:nth-child(1) {
-        transition-delay: 0.1s;
-    }
-
-    .mobile-menu.is-open .mobile-menu-link:nth-child(2) {
-        transition-delay: 0.15s;
-    }
-
     .mobile-menu-link:hover,
     .mobile-menu-link:active {
         background: rgba(0, 0, 0, 0.04);
@@ -263,22 +347,11 @@ const i18n = t(locale);
         transition: opacity 0.4s ease 0.2s;
     }
 
-    .mobile-menu-cta {
-        margin-top: var(--space-sm);
-        padding: 14px 32px;
-        font-size: var(--font-size-base);
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    .mobile-menu.is-open .mobile-menu-cta {
-        opacity: 1;
-        transform: translateY(0);
-        transition:
-            opacity 0.4s ease 0.25s,
-            transform 0.4s ease 0.25s,
-            background 0.2s ease,
-            box-shadow 0.2s ease;
+    .mobile-menu-lang {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.5rem;
     }
 
     /* Media query moved to global.css to fix specificity issues */
