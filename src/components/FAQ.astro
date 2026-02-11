@@ -20,7 +20,12 @@ const i18n = t(locale);
                         open={index === 0}
                     >
                         <summary class="faq-question">
-                            <h3>{item.question}</h3>
+                            <div class="faq-content">
+                                <span class="faq-number">
+                                    {String(index + 1).padStart(2, "0")}
+                                </span>
+                                <h3>{item.question}</h3>
+                            </div>
                             <div class="faq-icon">
                                 <svg
                                     width="20"
@@ -90,7 +95,7 @@ const i18n = t(locale);
     }
 
     .faq-question {
-        padding: var(--space-xl);
+        padding: var(--space-md);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -101,6 +106,20 @@ const i18n = t(locale);
 
     .faq-question::-webkit-details-marker {
         display: none;
+    }
+
+    .faq-content {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+    }
+
+    .faq-number {
+        color: var(--color-accent-blue);
+        font-weight: 600;
+        font-size: var(--font-size-sm);
+        opacity: 0.8;
+        font-feature-settings: "tnum";
     }
 
     .faq-question h3 {
@@ -126,7 +145,8 @@ const i18n = t(locale);
     }
 
     .faq-answer {
-        padding: 0 var(--space-xl) var(--space-xl);
+        padding: 0 var(--space-md) var(--space-md)
+            calc(var(--space-md) + var(--space-md) + 2ch);
         color: var(--color-text-secondary);
         line-height: 1.6;
         animation: slideDown 0.3s ease-out;
