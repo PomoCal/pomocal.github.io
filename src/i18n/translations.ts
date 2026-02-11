@@ -26,6 +26,25 @@ export const translations = {
             ctaSecondary: '자세히 알아보기',
         },
 
+        // PainPoint
+        painPoint: {
+            label: '왜 PomoCal인가?',
+            title1: '여러 앱을 오가며',
+            title2: '시간을 낭비하고 있진 않나요?',
+            before: 'BEFORE',
+            after: 'AFTER',
+            apps: [
+                { name: 'TickTick', category: '할 일 관리' },
+                { name: 'Apple 캘린더', category: '일정 관리' },
+                { name: 'Focus Timer', category: '뽀모도로' },
+                { name: 'Notion / 메모앱', category: '학습 기록' },
+            ],
+            beforeDesc: '앱 전환에 집중이 끊기고, 데이터는 흩어지고, 기록은 결국 포기하게 됩니다.',
+            solutionTagline: '집중, 기록, 관리를 하나로',
+            solutionBadges: ['뽀모도로', '캘린더', '할 일', '통계', '도서 연동'],
+            afterDesc: '타이머를 돌리면 캘린더에 자동 기록. 더 이상 앱을 오갈 필요가 없습니다.',
+        },
+
         // Features
         features: {
             label: '핵심 기능',
@@ -165,6 +184,25 @@ export const translations = {
             ctaPrimary: 'Download for macOS',
             ctaVersion: 'v0.1.0',
             ctaSecondary: 'Learn More',
+        },
+
+        // PainPoint
+        painPoint: {
+            label: 'Why PomoCal?',
+            title1: 'Are you wasting time',
+            title2: 'switching between apps?',
+            before: 'BEFORE',
+            after: 'AFTER',
+            apps: [
+                { name: 'TickTick', category: 'To-Do' },
+                { name: 'Apple Calendar', category: 'Scheduling' },
+                { name: 'Focus Timer', category: 'Pomodoro' },
+                { name: 'Notion / Notes', category: 'Study Log' },
+            ],
+            beforeDesc: 'Context switching kills focus. Data is scattered. You eventually stop tracking.',
+            solutionTagline: 'Focus, Record, Manage — All in One',
+            solutionBadges: ['Pomodoro', 'Calendar', 'Todos', 'Stats', 'Books'],
+            afterDesc: 'Start a timer and it auto-logs to your calendar. No more switching apps.',
         },
 
         // Features
