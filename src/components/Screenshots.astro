@@ -1,47 +1,33 @@
 ---
-const screenshots = [
-    {
-        src: "/images/screenshots/sample_1.png",
-        title: "메인 화면",
-        desc: "캘린더, 할 일, 뽀모도로 타이머를 한 화면에서",
-    },
-    {
-        src: "/images/screenshots/sample_2.png",
-        title: "도서 라이브러리",
-        desc: "교재를 검색하고 학습에 연결",
-    },
-    {
-        src: "/images/screenshots/sample_3.png",
-        title: "학습 세션 추가",
-        desc: "카테고리와 교재를 지정해 체계적으로 계획",
-    },
-    {
-        src: "/images/screenshots/sample_4.png",
-        title: "집중 모드",
-        desc: "뽀모도로 타이머로 깊은 집중에 몰입",
-    },
-    {
-        src: "/images/screenshots/sample_5.png",
-        title: "휴식 타이머",
-        desc: "집중 후 자동으로 전환되는 휴식 시간",
-    },
-    {
-        src: "/images/screenshots/sample_6.png",
-        title: "학습 통계",
-        desc: "카테고리별 시간 투자를 차트로 분석",
-    },
+import { getLocaleFromUrl, t } from "../i18n/utils";
+
+const locale = getLocaleFromUrl(Astro.url);
+const i18n = t(locale);
+
+const screenshotSrcs = [
+    "/images/screenshots/sample_1.png",
+    "/images/screenshots/sample_2.png",
+    "/images/screenshots/sample_3.png",
+    "/images/screenshots/sample_4.png",
+    "/images/screenshots/sample_5.png",
+    "/images/screenshots/sample_6.png",
 ];
+
+const screenshots = i18n.screenshots.items.map((item, index) => ({
+    ...item,
+    src: screenshotSrcs[index],
+}));
 ---
 
 <section id="screenshots" class="section screenshots-section">
     <div class="container">
         <div class="screenshots-header reveal">
-            <span class="section-label">앱 미리보기</span>
+            <span class="section-label">{i18n.screenshots.label}</span>
             <h2 class="section-title">
-                직관적인 인터페이스,<br />강력한 기능
+                {i18n.screenshots.title1}<br />{i18n.screenshots.title2}
             </h2>
             <p class="section-subtitle">
-                심플하면서도 필요한 모든 것을 담은 올인원 학습 도구
+                {i18n.screenshots.subtitle}
             </p>
         </div>
 
@@ -72,7 +58,7 @@ const screenshots = [
             <button
                 class="gallery-arrow gallery-prev"
                 id="galleryPrev"
-                aria-label="이전"
+                aria-label={i18n.screenshots.prevLabel}
             >
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path
@@ -86,7 +72,7 @@ const screenshots = [
             <button
                 class="gallery-arrow gallery-next"
                 id="galleryNext"
-                aria-label="다음"
+                aria-label={i18n.screenshots.nextLabel}
             >
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path
@@ -105,7 +91,7 @@ const screenshots = [
                         <button
                             class={`dot ${i === 0 ? "active" : ""}`}
                             data-dot={i}
-                            aria-label={`슬라이드 ${i + 1}`}
+                            aria-label={`${i18n.screenshots.slideLabel} ${i + 1}`}
                         />
                     ))
                 }

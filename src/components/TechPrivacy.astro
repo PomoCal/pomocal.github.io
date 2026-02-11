@@ -1,40 +1,38 @@
 ---
-const items = [
-    {
-        icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+import { getLocaleFromUrl, t } from "../i18n/utils";
+
+const locale = getLocaleFromUrl(Astro.url);
+const i18n = t(locale);
+
+const icons = [
+    `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="32" height="32" rx="8" fill="rgba(0,122,255,0.1)"/>
       <path d="M16 8C12.2 8 9 10.3 9 14C9 18 12 20 14 22H18C20 20 23 18 23 14C23 10.3 19.8 8 16 8Z" stroke="#007AFF" stroke-width="1.5" stroke-linejoin="round"/>
       <path d="M13 22V24H19V22" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M16 12V17" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round"/>
       <path d="M14 15H18" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round"/>
     </svg>`,
-        label: "Native & Swift",
-        title: "macOS를 위해 태어난 앱",
-        description:
-            "SwiftUI로 개발된 Native 앱으로, macOS 최신 버전에서 가장 빠르고 안정적입니다. 시스템 자원을 최소한으로 사용하며 즉각적인 반응 속도를 제공합니다.",
-    },
-    {
-        icon: `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="32" height="32" rx="8" fill="rgba(52,199,89,0.1)"/>
       <rect x="9" y="11" width="14" height="12" rx="2" stroke="#34C759" stroke-width="1.5"/>
       <path d="M12 11V9C12 7.89543 12.8954 7 14 7H18C19.1046 7 20 7.89543 20 9V11" stroke="#34C759" stroke-width="1.5" stroke-linecap="round"/>
       <circle cx="16" cy="17" r="2" stroke="#34C759" stroke-width="1.5"/>
       <path d="M16 19V21" stroke="#34C759" stroke-width="1.5" stroke-linecap="round"/>
     </svg>`,
-        label: "Privacy First",
-        title: "당신의 데이터는<br/>당신의 것입니다",
-        description:
-            "외부 서버가 아닌 iCloud Drive와 로컬에만 저장됩니다. 어떤 학습 데이터도 외부로 전송되지 않으며, 완전한 프라이버시를 보장합니다.",
-    },
 ];
+
+const items = i18n.techPrivacy.items.map((item, index) => ({
+    ...item,
+    icon: icons[index],
+}));
 ---
 
 <section id="trust" class="section trust">
     <div class="container">
         <div class="trust-header reveal">
-            <span class="section-label">기술 & 프라이버시</span>
+            <span class="section-label">{i18n.techPrivacy.label}</span>
             <h2 class="section-title">
-                신뢰할 수 있는 기술,<br />안전한 데이터
+                {i18n.techPrivacy.title1}<br />{i18n.techPrivacy.title2}
             </h2>
         </div>
 

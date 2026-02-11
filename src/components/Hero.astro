@@ -1,5 +1,8 @@
 ---
+import { getLocaleFromUrl, t } from "../i18n/utils";
 
+const locale = getLocaleFromUrl(Astro.url);
+const i18n = t(locale);
 ---
 
 <section class="hero">
@@ -12,18 +15,18 @@
     <div class="container hero-content">
         <div class="hero-badge reveal">
             <span class="badge-dot"></span>
-            macOS 전용 · 무료 다운로드
+            {i18n.hero.badge}
         </div>
 
         <h1 class="hero-headline reveal reveal-delay-1">
-            단순한 타이머를 넘어,<br />
-            <span class="hero-headline-accent">당신의 성장</span>을 기록하는
-            캘린더.
+            {i18n.hero.headlineBefore}<br />
+            <span class="hero-headline-accent">{i18n.hero.headlineAccent}</span
+            >{i18n.hero.headlineAfter}
         </h1>
 
         <p class="hero-subtext reveal reveal-delay-2">
-            포모도로와 캘린더의 완벽한 조화.<br />
-            PomoCal로 당신의 집중 시간을 시각화하세요.
+            {i18n.hero.subtext1}<br />
+            {i18n.hero.subtext2}
         </p>
 
         <div class="hero-actions reveal reveal-delay-3">
@@ -59,11 +62,11 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"></path>
                 </svg>
-                Download for macOS
-                <span class="btn-version">v0.1.0</span>
+                {i18n.hero.ctaPrimary}
+                <span class="btn-version">{i18n.hero.ctaVersion}</span>
             </a>
             <a href="#features" class="btn btn-secondary">
-                자세히 알아보기
+                {i18n.hero.ctaSecondary}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path
                         d="M8 3V13M8 13L12 9M8 13L4 9"

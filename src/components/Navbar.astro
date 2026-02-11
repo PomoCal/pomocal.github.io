@@ -1,16 +1,19 @@
 ---
+import { getLocaleFromUrl, t } from "../i18n/utils";
 
+const locale = getLocaleFromUrl(Astro.url);
+const i18n = t(locale);
 ---
 
 <nav class="navbar">
     <div class="navbar-inner container">
-        <a href="/" class="navbar-brand">
+        <a href={locale === "ko" ? "/" : "/en/"} class="navbar-brand">
             <img src="/images/app-icon.png" alt="PomoCal" class="navbar-logo" />
             <span class="navbar-name">PomoCal</span>
         </a>
         <div class="navbar-links">
-            <a href="#features" class="nav-link">기능</a>
-            <a href="#trust" class="nav-link">기술 & 프라이버시</a>
+            <a href="#features" class="nav-link">{i18n.navbar.features}</a>
+            <a href="#trust" class="nav-link">{i18n.navbar.techPrivacy}</a>
             <a
                 href="https://github.com/pxxguin/PomodoroCalendar/releases"
                 target="_blank"
@@ -36,7 +39,7 @@
                         stroke-width="1.5"
                         stroke-linecap="round"></path>
                 </svg>
-                Download
+                {i18n.navbar.download}
             </a>
         </div>
     </div>

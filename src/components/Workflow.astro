@@ -1,37 +1,25 @@
 ---
-const steps = [
-    {
-        title: "계획하기",
-        subtitle: "Todo 작성",
-        color: "#007AFF",
-    },
-    {
-        title: "집중하기",
-        subtitle: "뽀모도로 실행",
-        color: "#FF6347",
-    },
-    {
-        title: "기록하기",
-        subtitle: "캘린더 자동 연동",
-        color: "#34C759",
-    },
-    {
-        title: "분석하기",
-        subtitle: "통계 확인",
-        color: "#AF52DE",
-    },
-];
+import { getLocaleFromUrl, t } from "../i18n/utils";
+
+const locale = getLocaleFromUrl(Astro.url);
+const i18n = t(locale);
+
+const stepColors = ["#007AFF", "#FF6347", "#34C759", "#AF52DE"];
+const steps = i18n.workflow.steps.map((step, index) => ({
+    ...step,
+    color: stepColors[index],
+}));
 ---
 
 <section id="workflow" class="section workflow">
     <div class="container">
         <div class="workflow-header reveal">
-            <span class="section-label">작동 원리</span>
+            <span class="section-label">{i18n.workflow.label}</span>
             <h2 class="section-title">
-                4단계로 완성되는<br />당신의 학습 루틴
+                {i18n.workflow.title1}<br />{i18n.workflow.title2}
             </h2>
             <p class="section-subtitle">
-                복잡한 설정 없이, 자연스러운 워크플로우를 경험하세요.
+                {i18n.workflow.subtitle}
             </p>
         </div>
 
@@ -73,8 +61,7 @@ const steps = [
                     </filter>
                 </defs>
 
-                <!-- S-curve: peaks at y=110, valleys at y=230 -->
-                <!-- Node positions: n1=(160,110), n2=(390,230), n3=(620,110), n4=(850,230) -->
+                <!-- S-curve -->
                 <path
                     d="M 20,230 C 80,230 80,110 160,110 C 240,110 240,230 390,230 C 540,230 540,110 620,110 C 700,110 700,230 850,230"
                     stroke="url(#wg)"
@@ -90,7 +77,7 @@ const steps = [
                     stroke-linecap="round"
                     stroke-linejoin="round"></path>
 
-                <!-- ===== Node 1: peak (160, 110) — label on TOP ===== -->
+                <!-- Node 1: peak (160, 110) — label on TOP -->
                 <text
                     x="160"
                     y="50"
@@ -98,7 +85,7 @@ const steps = [
                     font-family="'Inter', sans-serif"
                     font-weight="700"
                     font-size="17"
-                    fill="#1D1D1F">계획하기</text
+                    fill="#1D1D1F">{steps[0].title}</text
                 >
                 <text
                     x="160"
@@ -107,7 +94,7 @@ const steps = [
                     font-family="'Inter', sans-serif"
                     font-weight="500"
                     font-size="12"
-                    fill="#86868B">Todo 작성</text
+                    fill="#86868B">{steps[0].subtitle}</text
                 >
                 <circle
                     cx="160"
@@ -143,7 +130,7 @@ const steps = [
                         stroke-linecap="round"></path>
                 </g>
 
-                <!-- ===== Node 2: valley (390, 230) — label on BOTTOM ===== -->
+                <!-- Node 2: valley (390, 230) — label on BOTTOM -->
                 <circle
                     cx="390"
                     cy="230"
@@ -180,7 +167,7 @@ const steps = [
                     font-family="'Inter', sans-serif"
                     font-weight="700"
                     font-size="17"
-                    fill="#1D1D1F">집중하기</text
+                    fill="#1D1D1F">{steps[1].title}</text
                 >
                 <text
                     x="390"
@@ -189,10 +176,10 @@ const steps = [
                     font-family="'Inter', sans-serif"
                     font-weight="500"
                     font-size="12"
-                    fill="#86868B">뽀모도로 실행</text
+                    fill="#86868B">{steps[1].subtitle}</text
                 >
 
-                <!-- ===== Node 3: peak (620, 110) — label on TOP ===== -->
+                <!-- Node 3: peak (620, 110) — label on TOP -->
                 <text
                     x="620"
                     y="50"
@@ -200,7 +187,7 @@ const steps = [
                     font-family="'Inter', sans-serif"
                     font-weight="700"
                     font-size="17"
-                    fill="#1D1D1F">기록하기</text
+                    fill="#1D1D1F">{steps[2].title}</text
                 >
                 <text
                     x="620"
@@ -209,7 +196,7 @@ const steps = [
                     font-family="'Inter', sans-serif"
                     font-weight="500"
                     font-size="12"
-                    fill="#86868B">캘린더 자동 연동</text
+                    fill="#86868B">{steps[2].subtitle}</text
                 >
                 <circle
                     cx="620"
@@ -255,8 +242,7 @@ const steps = [
                         stroke-linejoin="round"></path>
                 </g>
 
-                <!-- ===== Node 4: valley end (850, 230) — label on BOTTOM ===== -->
-                <!-- Pull it slightly left to avoid arrow overlap -->
+                <!-- Node 4: valley end (820, 225) — label on BOTTOM -->
                 <circle
                     cx="820"
                     cy="225"
@@ -300,7 +286,7 @@ const steps = [
                     font-family="'Inter', sans-serif"
                     font-weight="700"
                     font-size="17"
-                    fill="#1D1D1F">분석하기</text
+                    fill="#1D1D1F">{steps[3].title}</text
                 >
                 <text
                     x="820"
@@ -309,7 +295,7 @@ const steps = [
                     font-family="'Inter', sans-serif"
                     font-weight="500"
                     font-size="12"
-                    fill="#86868B">통계 확인</text
+                    fill="#86868B">{steps[3].subtitle}</text
                 >
             </svg>
         </div>

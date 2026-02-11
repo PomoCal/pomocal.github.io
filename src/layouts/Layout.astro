@@ -1,17 +1,20 @@
 ---
+import { getLocaleFromUrl, t } from "../i18n/utils";
+
 interface Props {
   title?: string;
   description?: string;
 }
 
-const {
-  title = "PomoCal — 당신의 성장을 기록하는 캘린더",
-  description = "포모도로와 캘린더의 완벽한 조화. macOS 사용자를 위한 가장 직관적인 학습 관리 도구.",
-} = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const i18n = t(locale);
+
+const { title = i18n.layout.title, description = i18n.layout.description } =
+  Astro.props;
 ---
 
 <!doctype html>
-<html lang="ko">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -48,10 +51,12 @@ const {
             }
           });
         },
-        { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
+        { threshold: 0.1, rootMargin: "0px 0px -60px 0px" },
       );
 
-      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>

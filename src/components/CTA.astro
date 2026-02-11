@@ -1,5 +1,8 @@
 ---
+import { getLocaleFromUrl, t } from "../i18n/utils";
 
+const locale = getLocaleFromUrl(Astro.url);
+const i18n = t(locale);
 ---
 
 <section class="cta-section">
@@ -8,11 +11,11 @@
             <div class="cta-glow" aria-hidden="true"></div>
             <div class="cta-content">
                 <h2 class="cta-title">
-                    오늘부터 당신의<br />성장을 기록하세요
+                    {i18n.cta.title1}<br />{i18n.cta.title2}
                 </h2>
                 <p class="cta-desc">
-                    PomoCal과 함께 집중 시간을 시각화하고,<br />
-                    매일의 작은 성장을 확인하세요.
+                    {i18n.cta.desc1}<br />
+                    {i18n.cta.desc2}
                 </p>
                 <div class="cta-actions">
                     <a
@@ -46,11 +49,9 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"></path>
                         </svg>
-                        무료 다운로드
+                        {i18n.cta.button}
                     </a>
-                    <span class="cta-meta"
-                        >macOS 13.0+ · 무료 · 오프라인 동작</span
-                    >
+                    <span class="cta-meta">{i18n.cta.meta}</span>
                 </div>
             </div>
         </div>
