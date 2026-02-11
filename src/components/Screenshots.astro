@@ -1,0 +1,377 @@
+---
+const screenshots = [
+    {
+        src: "/images/screenshots/sample_1.png",
+        title: "메인 화면",
+        desc: "캘린더, 할 일, 뽀모도로 타이머를 한 화면에서",
+    },
+    {
+        src: "/images/screenshots/sample_2.png",
+        title: "도서 라이브러리",
+        desc: "교재를 검색하고 학습에 연결",
+    },
+    {
+        src: "/images/screenshots/sample_3.png",
+        title: "학습 세션 추가",
+        desc: "카테고리와 교재를 지정해 체계적으로 계획",
+    },
+    {
+        src: "/images/screenshots/sample_4.png",
+        title: "집중 모드",
+        desc: "뽀모도로 타이머로 깊은 집중에 몰입",
+    },
+    {
+        src: "/images/screenshots/sample_5.png",
+        title: "휴식 타이머",
+        desc: "집중 후 자동으로 전환되는 휴식 시간",
+    },
+    {
+        src: "/images/screenshots/sample_6.png",
+        title: "학습 통계",
+        desc: "카테고리별 시간 투자를 차트로 분석",
+    },
+];
+---
+
+<section id="screenshots" class="section screenshots-section">
+    <div class="container">
+        <div class="screenshots-header reveal">
+            <span class="section-label">앱 미리보기</span>
+            <h2 class="section-title">
+                직관적인 인터페이스,<br />강력한 기능
+            </h2>
+            <p class="section-subtitle">
+                심플하면서도 필요한 모든 것을 담은 올인원 학습 도구
+            </p>
+        </div>
+
+        <!-- Carousel -->
+        <div class="gallery reveal">
+            <div class="gallery-track" id="galleryTrack">
+                {
+                    screenshots.map((shot, i) => (
+                        <div class="gallery-slide" data-index={i}>
+                            <div class="slide-img-wrap">
+                                <img
+                                    src={shot.src}
+                                    alt={shot.title}
+                                    loading="lazy"
+                                    class="slide-img"
+                                />
+                            </div>
+                            <div class="slide-caption">
+                                <h3 class="slide-title">{shot.title}</h3>
+                                <p class="slide-desc">{shot.desc}</p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- Navigation arrows -->
+            <button
+                class="gallery-arrow gallery-prev"
+                id="galleryPrev"
+                aria-label="이전"
+            >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path
+                        d="M12 4L6 10L12 16"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </button>
+            <button
+                class="gallery-arrow gallery-next"
+                id="galleryNext"
+                aria-label="다음"
+            >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path
+                        d="M8 4L14 10L8 16"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </button>
+
+            <!-- Dots -->
+            <div class="gallery-dots" id="galleryDots">
+                {
+                    screenshots.map((_, i) => (
+                        <button
+                            class={`dot ${i === 0 ? "active" : ""}`}
+                            data-dot={i}
+                            aria-label={`슬라이드 ${i + 1}`}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .screenshots-section {
+        background: var(--color-bg);
+        overflow: hidden;
+    }
+
+    .screenshots-header {
+        text-align: center;
+        margin-bottom: var(--space-2xl);
+    }
+
+    .screenshots-header .section-subtitle {
+        margin: 0 auto;
+    }
+
+    /* Gallery */
+    .gallery {
+        position: relative;
+        max-width: 860px;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 0 40px;
+    }
+
+    .gallery-track {
+        display: flex;
+        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        will-change: transform;
+    }
+
+    .gallery-slide {
+        flex: 0 0 100%;
+        padding: 0 var(--space-md);
+        box-sizing: border-box;
+    }
+
+    .slide-img-wrap {
+        background: #f5f5f7;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow:
+            0 8px 40px rgba(0, 0, 0, 0.08),
+            0 2px 8px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(0, 0, 0, 0.04);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .gallery-slide:hover .slide-img-wrap {
+        box-shadow:
+            0 12px 48px rgba(0, 0, 0, 0.12),
+            0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .slide-img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .slide-caption {
+        text-align: center;
+        padding: var(--space-lg) 0 0;
+    }
+
+    .slide-title {
+        font-size: var(--font-size-lg);
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: 4px;
+    }
+
+    .slide-desc {
+        font-size: var(--font-size-sm);
+        color: var(--color-text-secondary);
+    }
+
+    /* Arrows */
+    .gallery-arrow {
+        position: absolute;
+        top: 42%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--color-white);
+        border: 1px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--color-text-secondary);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        transition: all 0.2s ease;
+        z-index: 10;
+    }
+
+    .gallery-arrow:hover {
+        background: var(--color-text-primary);
+        color: var(--color-white);
+        border-color: var(--color-text-primary);
+    }
+
+    .gallery-prev {
+        left: 0;
+    }
+    .gallery-next {
+        right: 0;
+    }
+
+    /* Dots */
+    .gallery-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: var(--space-lg);
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--color-border);
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 0;
+    }
+
+    .dot.active {
+        background: var(--color-accent-blue);
+        width: 24px;
+        border-radius: 4px;
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+        .gallery-prev {
+            left: 0;
+        }
+        .gallery-next {
+            right: 0;
+        }
+
+        .gallery-arrow {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .slide-img-wrap {
+            border-radius: 12px;
+        }
+
+        .slide-title {
+            font-size: var(--font-size-base);
+        }
+    }
+</style>
+
+<script>
+    const track = document.getElementById("galleryTrack");
+    const prev = document.getElementById("galleryPrev");
+    const next = document.getElementById("galleryNext");
+    const dotsContainer = document.getElementById("galleryDots");
+    const dots = dotsContainer?.querySelectorAll(".dot");
+    const slides = track?.querySelectorAll(".gallery-slide");
+    const total = slides?.length || 0;
+
+    if (track && slides && total > 0) {
+        // Clone first and last slides for infinite loop
+        const firstClone = slides[0].cloneNode(true) as HTMLElement;
+        const lastClone = slides[total - 1].cloneNode(true) as HTMLElement;
+        firstClone.classList.add("clone");
+        lastClone.classList.add("clone");
+        track.appendChild(firstClone);
+        track.insertBefore(lastClone, slides[0]);
+
+        // Start at position 1 (real first slide, after the prepended clone)
+        let current = 1;
+        track.style.transform = `translateX(-${current * 100}%)`;
+
+        function updateDots() {
+            if (!dots) return;
+            // Map track position to real slide index (0-based)
+            let realIndex = current - 1;
+            if (realIndex < 0) realIndex = total - 1;
+            if (realIndex >= total) realIndex = 0;
+            dots.forEach((d, i) =>
+                d.classList.toggle("active", i === realIndex),
+            );
+        }
+
+        function slideTo(index: number, animate = true) {
+            if (!track) return;
+            current = index;
+            if (animate) {
+                track.style.transition =
+                    "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)";
+            } else {
+                track.style.transition = "none";
+            }
+            track.style.transform = `translateX(-${current * 100}%)`;
+            updateDots();
+        }
+
+        // After transition ends, jump to real position if on a clone
+        track.addEventListener("transitionend", () => {
+            if (current === 0) {
+                // On last clone (prepended) → jump to real last slide
+                slideTo(total, false);
+            } else if (current === total + 1) {
+                // On first clone (appended) → jump to real first slide
+                slideTo(1, false);
+            }
+        });
+
+        function goNext() {
+            slideTo(current + 1);
+        }
+        function goPrev() {
+            slideTo(current - 1);
+        }
+
+        prev?.addEventListener("click", goPrev);
+        next?.addEventListener("click", goNext);
+        dots?.forEach((d) => {
+            d.addEventListener("click", () => {
+                const i = parseInt((d as HTMLElement).dataset.dot || "0");
+                slideTo(i + 1); // +1 because of prepended clone
+            });
+        });
+
+        // Touch swipe
+        let startX = 0;
+        let isDragging = false;
+
+        track.addEventListener("touchstart", (e) => {
+            startX = (e as TouchEvent).touches[0].clientX;
+            isDragging = true;
+        });
+
+        track.addEventListener("touchend", (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            const diff = startX - (e as TouchEvent).changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? goNext() : goPrev();
+            }
+        });
+
+        // Auto-play
+        let autoPlay = setInterval(goNext, 5000);
+
+        track.addEventListener("mouseenter", () => clearInterval(autoPlay));
+        track.addEventListener("mouseleave", () => {
+            autoPlay = setInterval(goNext, 5000);
+        });
+    }
+</script>

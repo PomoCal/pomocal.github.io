@@ -74,7 +74,7 @@
 <style>
     .hero {
         padding-top: calc(56px + var(--space-5xl));
-        padding-bottom: var(--space-2xl);
+        padding-bottom: var(--space-5xl);
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -149,28 +149,38 @@
     .hero-headline-accent {
         display: inline-block;
         background: linear-gradient(
-            90deg,
-            #ff6347,
-            #ff8c42,
-            #007aff,
-            #af52de,
-            #ff6347,
-            #ff8c42,
-            #007aff
+            120deg,
+            #ff6347 0%,
+            #ff8c42 25%,
+            #007aff 50%,
+            #af52de 75%,
+            #ff6347 100%
         );
-        background-size: 400% 100%;
+        background-size: 200% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        animation: gradient-flow 6s linear infinite;
+        animation: shimmer 3s ease-in-out infinite alternate;
     }
 
-    @keyframes gradient-flow {
+    @keyframes shimmer {
         0% {
-            background-position: 0% 50%;
+            background-position: 0% center;
+            filter: hue-rotate(0deg) brightness(1);
+        }
+        25% {
+            filter: hue-rotate(15deg) brightness(1.05);
+        }
+        50% {
+            background-position: 50% center;
+            filter: hue-rotate(-10deg) brightness(1.1);
+        }
+        75% {
+            filter: hue-rotate(20deg) brightness(1.05);
         }
         100% {
-            background-position: -400% 50%;
+            background-position: 100% center;
+            filter: hue-rotate(0deg) brightness(1);
         }
     }
 
