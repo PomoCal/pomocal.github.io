@@ -11,6 +11,8 @@ const i18n = t(locale);
             <img src="/images/app-icon.png" alt="PomoCal" class="navbar-logo" />
             <span class="navbar-name">PomoCal</span>
         </a>
+
+        <!-- Desktop links -->
         <div class="navbar-links">
             <a href="#features" class="nav-link">{i18n.navbar.features}</a>
             <a href="#trust" class="nav-link">{i18n.navbar.techPrivacy}</a>
@@ -42,10 +44,79 @@ const i18n = t(locale);
                 {i18n.navbar.download}
             </a>
         </div>
+
+        <!-- Hamburger button (mobile only) -->
+        <button
+            class="hamburger"
+            id="hamburger-btn"
+            aria-label="메뉴 열기"
+            aria-expanded="false"
+        >
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
     </div>
 </nav>
 
-<style>
+<!-- Fullscreen mobile menu -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-content">
+        <a href="#features" class="mobile-menu-link">{i18n.navbar.features}</a>
+        <a href="#trust" class="mobile-menu-link">{i18n.navbar.techPrivacy}</a>
+        <div class="mobile-menu-divider"></div>
+        <a
+            href="https://github.com/pxxguin/PomodoroCalendar/releases"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary mobile-menu-cta"
+        >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                    d="M8 1L8 11M8 11L4 7M8 11L12 7"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                <path
+                    d="M2 13H14"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"></path>
+            </svg>
+            {i18n.navbar.download}
+        </a>
+    </div>
+</div>
+
+<script>
+    const hamburger = document.getElementById("hamburger-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileLinks = mobileMenu?.querySelectorAll(
+        ".mobile-menu-link, .mobile-menu-cta",
+    );
+
+    function toggleMenu() {
+        const isOpen = hamburger?.getAttribute("aria-expanded") === "true";
+        hamburger?.setAttribute("aria-expanded", String(!isOpen));
+        mobileMenu?.setAttribute("aria-hidden", String(isOpen));
+        hamburger?.classList.toggle("is-active");
+        mobileMenu?.classList.toggle("is-open");
+        document.body.style.overflow = isOpen ? "" : "hidden";
+    }
+
+    hamburger?.addEventListener("click", toggleMenu);
+
+    mobileLinks?.forEach((link) => {
+        link.addEventListener("click", () => {
+            if (mobileMenu?.classList.contains("is-open")) {
+                toggleMenu();
+            }
+        });
+    });
+</script>
+
+<style is:global>
     .navbar {
         position: fixed;
         top: 0;
@@ -69,6 +140,7 @@ const i18n = t(locale);
         display: flex;
         align-items: center;
         gap: 10px;
+        z-index: 1001;
     }
 
     .navbar-logo {
@@ -105,9 +177,149 @@ const i18n = t(locale);
         font-size: var(--font-size-sm);
     }
 
-    @media (max-width: 768px) {
-        .nav-link {
-            display: none;
-        }
+    /* Hamburger button */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+        border-radius: 8px;
+        transition: background 0.2s ease;
     }
+
+    .hamburger:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    .hamburger-line {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--color-text-primary);
+        border-radius: 2px;
+        transition:
+            transform 0.3s ease,
+            opacity 0.3s ease;
+        transform-origin: center;
+    }
+
+    .hamburger.is-active .hamburger-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.is-active .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.is-active .hamburger-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background: rgba(245, 245, 247, 0.97);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease;
+    }
+
+    .mobile-menu.is-open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .mobile-menu-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        gap: 8px;
+        padding: var(--space-2xl);
+    }
+
+    .mobile-menu-link {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        font-weight: 700;
+        color: var(--color-text-primary);
+        padding: var(--space-md) var(--space-xl);
+        border-radius: 12px;
+        transition:
+            background 0.2s ease,
+            color 0.2s ease;
+        letter-spacing: -0.01em;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .mobile-menu.is-open .mobile-menu-link {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+            opacity 0.4s ease,
+            transform 0.4s ease,
+            background 0.2s ease;
+    }
+
+    .mobile-menu.is-open .mobile-menu-link:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .mobile-menu.is-open .mobile-menu-link:nth-child(2) {
+        transition-delay: 0.15s;
+    }
+
+    .mobile-menu-link:hover,
+    .mobile-menu-link:active {
+        background: rgba(0, 0, 0, 0.04);
+        color: var(--color-accent-blue);
+    }
+
+    .mobile-menu-divider {
+        width: 48px;
+        height: 1px;
+        background: rgba(0, 0, 0, 0.1);
+        margin: var(--space-md) 0;
+        opacity: 0;
+    }
+
+    .mobile-menu.is-open .mobile-menu-divider {
+        opacity: 1;
+        transition: opacity 0.4s ease 0.2s;
+    }
+
+    .mobile-menu-cta {
+        margin-top: var(--space-sm);
+        padding: 14px 32px;
+        font-size: var(--font-size-base);
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .mobile-menu.is-open .mobile-menu-cta {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+            opacity 0.4s ease 0.25s,
+            transform 0.4s ease 0.25s,
+            background 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    /* Media query moved to global.css to fix specificity issues */
 </style>

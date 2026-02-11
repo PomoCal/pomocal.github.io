@@ -224,3 +224,16 @@ a {
     padding: var(--space-2xl) 0;
   }
 }
+
+/* ===== Navbar Mobile Fix ===== */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none !important;
+  }
+  .hamburger {
+    display: flex !important;
+  }
+  .mobile-menu {
+    display: block !important;
+  }
+}
