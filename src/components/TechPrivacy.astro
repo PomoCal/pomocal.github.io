@@ -3,28 +3,6 @@ import { getLocaleFromUrl, t } from "../i18n/utils";
 
 const locale = getLocaleFromUrl(Astro.url);
 const i18n = t(locale);
-
-const icons = [
-    `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="32" height="32" rx="8" fill="rgba(0,122,255,0.1)"/>
-      <path d="M16 8C12.2 8 9 10.3 9 14C9 18 12 20 14 22H18C20 20 23 18 23 14C23 10.3 19.8 8 16 8Z" stroke="#007AFF" stroke-width="1.5" stroke-linejoin="round"/>
-      <path d="M13 22V24H19V22" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M16 12V17" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M14 15H18" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>`,
-    `<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="32" height="32" rx="8" fill="rgba(52,199,89,0.1)"/>
-      <rect x="9" y="11" width="14" height="12" rx="2" stroke="#34C759" stroke-width="1.5"/>
-      <path d="M12 11V9C12 7.89543 12.8954 7 14 7H18C19.1046 7 20 7.89543 20 9V11" stroke="#34C759" stroke-width="1.5" stroke-linecap="round"/>
-      <circle cx="16" cy="17" r="2" stroke="#34C759" stroke-width="1.5"/>
-      <path d="M16 19V21" stroke="#34C759" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>`,
-];
-
-const items = i18n.techPrivacy.items.map((item, index) => ({
-    ...item,
-    icon: icons[index],
-}));
 ---
 
 <section id="trust" class="section trust">
@@ -36,59 +14,353 @@ const items = i18n.techPrivacy.items.map((item, index) => ({
             </h2>
         </div>
 
-        <div class="trust-grid">
-            {
-                items.map((item, index) => (
-                    <div
-                        class={`card trust-card reveal reveal-delay-${index + 1}`}
+        <!-- Row 1: Illustration Left / Text Right -->
+        <div class="trust-row reveal reveal-delay-1">
+            <div class="trust-visual">
+                <div class="trust-illustration trust-illustration--native">
+                    <!-- macOS window frame with Swift bird -->
+                    <svg
+                        viewBox="0 0 320 220"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="trust-svg"
                     >
-                        <div class="trust-icon" set:html={item.icon} />
-                        <span class="trust-label">{item.label}</span>
-                        <h3 class="trust-title" set:html={item.title} />
-                        <p class="trust-desc">{item.description}</p>
+                        <!-- Window frame -->
+                        <rect
+                            x="20"
+                            y="20"
+                            width="280"
+                            height="180"
+                            rx="12"
+                            fill="#FAFAFA"
+                            stroke="#E5E5EA"
+                            stroke-width="1.5"></rect>
+                        <!-- Title bar -->
+                        <rect
+                            x="20"
+                            y="20"
+                            width="280"
+                            height="32"
+                            rx="12"
+                            fill="#F5F5F7"></rect>
+                        <rect
+                            x="20"
+                            y="40"
+                            width="280"
+                            height="12"
+                            fill="#F5F5F7"></rect>
+                        <!-- Traffic lights -->
+                        <circle cx="40" cy="36" r="5" fill="#FF5F57"></circle>
+                        <circle cx="56" cy="36" r="5" fill="#FEBC2E"></circle>
+                        <circle cx="72" cy="36" r="5" fill="#28C840"></circle>
+                        <!-- Swift logo stylized -->
+                        <g transform="translate(120, 80)">
+                            <rect
+                                x="0"
+                                y="0"
+                                width="80"
+                                height="80"
+                                rx="18"
+                                fill="linear-gradient(135deg, #F05138, #FF6B4A)"
+                            ></rect>
+                            <defs>
+                                <linearGradient
+                                    id="swiftGrad"
+                                    x1="0"
+                                    y1="0"
+                                    x2="80"
+                                    y2="80"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop offset="0%" stop-color="#FF6B4A"
+                                    ></stop>
+                                    <stop offset="100%" stop-color="#F05138"
+                                    ></stop>
+                                </linearGradient>
+                            </defs>
+                            <rect
+                                x="0"
+                                y="0"
+                                width="80"
+                                height="80"
+                                rx="18"
+                                fill="url(#swiftGrad)"></rect>
+                            <path
+                                d="M56 22C56 22 44 34 32 42C38 38 44 36 44 36C36 44 26 50 20 52C26 54 34 54 42 50C46 48 50 44 54 38C56 34 56 28 56 22Z"
+                                fill="white"
+                                opacity="0.95"></path>
+                            <path
+                                d="M24 58C30 60 38 60 46 56C38 52 30 44 26 36C30 42 36 48 42 50C34 54 26 56 24 58Z"
+                                fill="white"
+                                opacity="0.95"></path>
+                        </g>
+                        <!-- Performance bar chart -->
+                        <g transform="translate(40, 100)">
+                            <rect
+                                x="0"
+                                y="60"
+                                width="20"
+                                height="40"
+                                rx="3"
+                                fill="#007AFF"
+                                opacity="0.2"></rect>
+                            <rect
+                                x="28"
+                                y="40"
+                                width="20"
+                                height="60"
+                                rx="3"
+                                fill="#007AFF"
+                                opacity="0.35"></rect>
+                            <rect
+                                x="56"
+                                y="20"
+                                width="20"
+                                height="80"
+                                rx="3"
+                                fill="#007AFF"
+                                opacity="0.6"></rect>
+                        </g>
+                        <!-- Speedometer accent -->
+                        <g transform="translate(224, 90)">
+                            <path
+                                d="M0 50 A 40 40 0 0 1 70 50"
+                                stroke="#34C759"
+                                stroke-width="4"
+                                fill="none"
+                                stroke-linecap="round"
+                                opacity="0.5"></path>
+                            <path
+                                d="M10 50 A 32 32 0 0 1 60 18"
+                                stroke="#34C759"
+                                stroke-width="4"
+                                fill="none"
+                                stroke-linecap="round"></path>
+                            <circle cx="55" cy="22" r="4" fill="#34C759"
+                            ></circle>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div class="trust-text">
+                <span class="trust-label"
+                    >{i18n.techPrivacy.items[0].label}</span
+                >
+                <h3 class="trust-title">{i18n.techPrivacy.items[0].title}</h3>
+                <p class="trust-desc">
+                    {i18n.techPrivacy.items[0].description}
+                </p>
+                <div class="trust-highlights">
+                    <div class="trust-highlight">
+                        <span class="highlight-value">SwiftUI</span>
+                        <span class="highlight-label">Framework</span>
                     </div>
-                ))
-            }
+                    <div class="trust-highlight">
+                        <span class="highlight-value">Native</span>
+                        <span class="highlight-label">Performance</span>
+                    </div>
+                    <div class="trust-highlight">
+                        <span class="highlight-value">macOS 13+</span>
+                        <span class="highlight-label">Optimized</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: Text Left / Illustration Right (reversed) -->
+        <div class="trust-row trust-row--reversed reveal reveal-delay-2">
+            <div class="trust-visual">
+                <div class="trust-illustration trust-illustration--privacy">
+                    <!-- Shield with lock -->
+                    <svg
+                        viewBox="0 0 320 220"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="trust-svg"
+                    >
+                        <!-- Cloud outline (iCloud reference) -->
+                        <g transform="translate(40, 30)">
+                            <path
+                                d="M200 120H50C28 120 10 102 10 80C10 60 24 44 44 40C44 18 62 0 84 0C102 0 118 12 124 28C130 24 138 22 146 22C172 22 194 44 194 70C194 72 194 74 194 76C218 78 236 98 236 120C236 120 220 120 200 120Z"
+                                fill="#F0F7FF"
+                                stroke="#007AFF"
+                                stroke-width="1.5"
+                                opacity="0.8"></path>
+                        </g>
+                        <!-- Shield -->
+                        <g transform="translate(110, 55)">
+                            <path
+                                d="M50 0L95 20V65C95 95 75 115 50 130C25 115 5 95 5 65V20L50 0Z"
+                                fill="#E8F5EE"
+                                stroke="#34C759"
+                                stroke-width="1.5"></path>
+                            <!-- Lock -->
+                            <rect
+                                x="34"
+                                y="56"
+                                width="32"
+                                height="28"
+                                rx="4"
+                                fill="#34C759"
+                                opacity="0.9"></rect>
+                            <path
+                                d="M40 56V46C40 40 44 36 50 36C56 36 60 40 60 46V56"
+                                stroke="#34C759"
+                                stroke-width="3"
+                                fill="none"
+                                stroke-linecap="round"></path>
+                            <circle cx="50" cy="68" r="4" fill="white"></circle>
+                            <path
+                                d="M50 72V78"
+                                stroke="white"
+                                stroke-width="3"
+                                stroke-linecap="round"></path>
+                        </g>
+                        <!-- Floating data dots (representing local data) -->
+                        <circle
+                            cx="60"
+                            cy="160"
+                            r="6"
+                            fill="#007AFF"
+                            opacity="0.2"></circle>
+                        <circle
+                            cx="80"
+                            cy="175"
+                            r="4"
+                            fill="#34C759"
+                            opacity="0.25"></circle>
+                        <circle
+                            cx="250"
+                            cy="155"
+                            r="5"
+                            fill="#AF52DE"
+                            opacity="0.2"></circle>
+                        <circle
+                            cx="270"
+                            cy="170"
+                            r="3"
+                            fill="#007AFF"
+                            opacity="0.15"></circle>
+                        <!-- "No server" crossed icon -->
+                        <g transform="translate(220, 140)">
+                            <rect
+                                x="4"
+                                y="8"
+                                width="36"
+                                height="28"
+                                rx="3"
+                                stroke="#FF3B30"
+                                stroke-width="1.2"
+                                fill="none"
+                                opacity="0.4"></rect>
+                            <path
+                                d="M0 40L44 4"
+                                stroke="#FF3B30"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                opacity="0.5"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div class="trust-text">
+                <span class="trust-label"
+                    >{i18n.techPrivacy.items[1].label}</span
+                >
+                <h3
+                    class="trust-title"
+                    set:html={i18n.techPrivacy.items[1].title}
+                />
+                <p class="trust-desc">
+                    {i18n.techPrivacy.items[1].description}
+                </p>
+                <div class="trust-highlights">
+                    <div class="trust-highlight">
+                        <span class="highlight-value">iCloud</span>
+                        <span class="highlight-label">Sync</span>
+                    </div>
+                    <div class="trust-highlight">
+                        <span class="highlight-value">Local</span>
+                        <span class="highlight-label">Storage</span>
+                    </div>
+                    <div class="trust-highlight">
+                        <span class="highlight-value">Zero</span>
+                        <span class="highlight-label">External Servers</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<style>
+<style is:global>
     .trust {
         background: var(--color-white);
     }
 
     .trust-header {
         text-align: center;
-        margin-bottom: var(--space-3xl);
+        margin-bottom: var(--space-4xl);
     }
 
-    .trust-grid {
+    /* Split Row */
+    .trust-row {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-xl);
-        max-width: 800px;
-        margin: 0 auto;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-3xl);
+        align-items: center;
+        margin-bottom: var(--space-4xl);
     }
 
-    .trust-card {
-        padding: var(--space-2xl);
-        background: var(--color-bg);
-        border: 1px solid transparent;
+    .trust-row:last-child {
+        margin-bottom: 0;
     }
 
-    .trust-card:hover {
-        border-color: var(--color-border);
-        background: var(--color-white);
+    .trust-row--reversed {
+        direction: rtl;
     }
 
-    .trust-icon {
-        margin-bottom: var(--space-lg);
+    .trust-row--reversed > * {
+        direction: ltr;
     }
 
-    .trust-icon :global(svg) {
-        width: 48px;
-        height: 48px;
+    /* Visual / Illustration side */
+    .trust-visual {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .trust-illustration {
+        width: 100%;
+        max-width: 380px;
+        aspect-ratio: 16 / 11;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .trust-illustration--native {
+        background: linear-gradient(145deg, #f0f4ff 0%, #e8eeff 100%);
+        border: 1px solid rgba(0, 122, 255, 0.1);
+    }
+
+    .trust-illustration--privacy {
+        background: linear-gradient(145deg, #f0faf4 0%, #e4f5ec 100%);
+        border: 1px solid rgba(52, 199, 89, 0.1);
+    }
+
+    .trust-svg {
+        width: 85%;
+        height: auto;
+    }
+
+    /* Text side */
+    .trust-text {
+        padding: var(--space-lg) 0;
     }
 
     .trust-label {
@@ -102,22 +374,70 @@ const items = i18n.techPrivacy.items.map((item, index) => ({
     }
 
     .trust-title {
-        font-size: var(--font-size-2xl);
-        font-weight: 700;
-        line-height: 1.3;
+        font-size: var(--font-size-3xl);
+        font-weight: 800;
+        line-height: 1.25;
         color: var(--color-text-primary);
         margin-bottom: var(--space-md);
+        letter-spacing: -0.02em;
     }
 
     .trust-desc {
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-base);
         color: var(--color-text-secondary);
-        line-height: 1.7;
+        line-height: 1.75;
+        margin-bottom: var(--space-xl);
     }
 
+    /* Stat highlights */
+    .trust-highlights {
+        display: flex;
+        gap: var(--space-xl);
+    }
+
+    .trust-highlight {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .highlight-value {
+        font-size: var(--font-size-lg);
+        font-weight: 700;
+        color: var(--color-text-primary);
+    }
+
+    .highlight-label {
+        font-size: var(--font-size-xs);
+        color: var(--color-text-tertiary);
+        font-weight: 500;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-        .trust-grid {
+        .trust-row {
             grid-template-columns: 1fr;
+            gap: var(--space-xl);
+        }
+
+        .trust-row--reversed {
+            direction: ltr;
+        }
+
+        .trust-visual {
+            order: -1;
+        }
+
+        .trust-illustration {
+            max-width: 320px;
+        }
+
+        .trust-title {
+            font-size: var(--font-size-2xl);
+        }
+
+        .trust-highlights {
+            gap: var(--space-lg);
         }
     }
 </style>
