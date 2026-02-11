@@ -8,9 +8,11 @@ export const translations = {
 
         // Navbar
         navbar: {
+            why: '왜 PomoCal인가?',
             features: '기능',
+            screenshots: '앱 미리보기',
             techPrivacy: '기술 & 프라이버시',
-            download: 'Download',
+            faq: 'FAQ',
         },
 
         // Hero
@@ -192,9 +194,11 @@ export const translations = {
 
         // Navbar
         navbar: {
+            why: 'Why PomoCal?',
             features: 'Features',
+            screenshots: 'App Preview',
             techPrivacy: 'Tech & Privacy',
-            download: 'Download',
+            faq: 'FAQ',
         },
 
         // Hero

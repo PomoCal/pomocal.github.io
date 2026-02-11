@@ -14,78 +14,38 @@ const i18n = t(locale);
 
         <!-- Desktop links -->
         <div class="navbar-links">
+            <a href="#why" class="nav-link">{i18n.navbar.why}</a>
             <a href="#features" class="nav-link">{i18n.navbar.features}</a>
-            <a href="#trust" class="nav-link">{i18n.navbar.techPrivacy}</a>
-            <a
-                href="https://github.com/pxxguin/PomodoroCalendar/releases"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-primary btn-sm"
+            <a href="#screenshots" class="nav-link">{i18n.navbar.screenshots}</a
             >
-                <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M8 1L8 11M8 11L4 7M8 11L12 7"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"></path>
-                    <path
-                        d="M2 13H14"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                        stroke-linecap="round"></path>
-                </svg>
-                {i18n.navbar.download}
-            </a>
+            <a href="#tech" class="nav-link">{i18n.navbar.techPrivacy}</a>
+            <a href="#faq" class="nav-link">{i18n.navbar.faq}</a>
         </div>
-
-        <!-- Hamburger button (mobile only) -->
-        <button
-            class="hamburger"
-            id="hamburger-btn"
-            aria-label="메뉴 열기"
-            aria-expanded="false"
-        >
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-        </button>
     </div>
 </nav>
+
+<!-- Hamburger button (mobile only) -->
+<button
+    class="hamburger"
+    id="hamburger-btn"
+    aria-label="메뉴 열기"
+    aria-expanded="false"
+>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+</button>
 
 <!-- Fullscreen mobile menu -->
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
     <div class="mobile-menu-content">
+        <a href="#why" class="mobile-menu-link">{i18n.navbar.why}</a>
         <a href="#features" class="mobile-menu-link">{i18n.navbar.features}</a>
-        <a href="#trust" class="mobile-menu-link">{i18n.navbar.techPrivacy}</a>
-        <div class="mobile-menu-divider"></div>
-        <a
-            href="https://github.com/pxxguin/PomodoroCalendar/releases"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-primary mobile-menu-cta"
+        <a href="#screenshots" class="mobile-menu-link"
+            >{i18n.navbar.screenshots}</a
         >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                    d="M8 1L8 11M8 11L4 7M8 11L12 7"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                <path
-                    d="M2 13H14"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"></path>
-            </svg>
-            {i18n.navbar.download}
-        </a>
+        <a href="#tech" class="mobile-menu-link">{i18n.navbar.techPrivacy}</a>
+        <a href="#faq" class="mobile-menu-link">{i18n.navbar.faq}</a>
     </div>
 </div>
 
