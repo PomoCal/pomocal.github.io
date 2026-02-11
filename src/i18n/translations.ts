@@ -118,6 +118,30 @@ export const translations = {
             ],
         },
 
+        // FAQ
+        faq: {
+            label: '자주 묻는 질문',
+            title: '궁금한 점이 있으신가요?',
+            items: [
+                {
+                    question: 'Windows에서도 사용할 수 있나요?',
+                    answer: '현재는 macOS 전용입니다. PomoCal은 macOS의 기본 프레임워크인 SwiftUI로 제작되어 최적의 성능을 제공합니다. 추후 Windows 및 모바일 버전 출시를 고려하고 있습니다.',
+                },
+                {
+                    question: '데이터가 날아가면 어떡하나요?',
+                    answer: '걱정하지 마세요. 모든 데이터는 사용자의 iCloud Drive와 로컬 기기에 안전하게 저장됩니다. 앱을 삭제하더라도 iCloud에 데이터가 남아있어 언제든지 복구할 수 있습니다.',
+                },
+                {
+                    question: '무료인가요?',
+                    answer: '네, 현재 베타 버전은 모든 기능을 무료로 제공하고 있습니다. 정식 출시 후에도 기본적인 포모도로 및 캘린더 기능은 평생 무료로 제공될 예정입니다.',
+                },
+                {
+                    question: '다른 캘린더와 연동되나요?',
+                    answer: 'Apple 기본 캘린더(iCal)와 완벽하게 연동됩니다. 구글 캘린더나 아웃룩 일정도 Apple 캘린더에 로그인되어 있다면 PomoCal에서 그대로 확인하고 관리할 수 있습니다.',
+                },
+            ],
+        },
+
         // CTA
         cta: {
             title1: '오늘부터 당신의',
@@ -274,6 +298,30 @@ export const translations = {
                     label: 'Privacy First',
                     title: 'Your data belongs<br/>to you',
                     description: 'Stored only on iCloud Drive and locally — never on external servers. No study data is ever transmitted externally, ensuring complete privacy.',
+                },
+            ],
+        },
+
+        // FAQ
+        faq: {
+            label: 'FAQ',
+            title: 'Frequently Asked Questions',
+            items: [
+                {
+                    question: 'Is it available on Windows?',
+                    answer: 'Currently, it is macOS only. PomoCal is built with SwiftUI, macOS\'s native framework, for optimal performance. We are considering Windows and mobile versions for the future.',
+                },
+                {
+                    question: 'What happens to my data?',
+                    answer: 'Don\'t worry. All data is securely stored locally and in your iCloud Drive. Even if you delete the app, your data remains safe in iCloud and can be restored at any time.',
+                },
+                {
+                    question: 'Is it free?',
+                    answer: 'Yes, the current beta version provides all features for free. Even after the official release, basic Pomodoro and calendar features will remain free forever.',
+                },
+                {
+                    question: 'Does it sync with other calendars?',
+                    answer: 'It seamlessly integrates with Apple Calendar (iCal). If you have Google Calendar or Outlook synced to Apple Calendar, you can view and manage them directly in PomoCal.',
                 },
             ],
         },

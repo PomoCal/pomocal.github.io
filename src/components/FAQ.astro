@@ -1,0 +1,159 @@
+---
+import { getLocaleFromUrl, t } from "../i18n/utils";
+
+const locale = getLocaleFromUrl(Astro.url);
+const i18n = t(locale);
+---
+
+<section id="faq" class="section faq-section">
+    <div class="container">
+        <div class="faq-header reveal">
+            <span class="section-label">{i18n.faq.label}</span>
+            <h2 class="section-title">{i18n.faq.title}</h2>
+        </div>
+
+        <div class="faq-grid">
+            {
+                i18n.faq.items.map((item, index) => (
+                    <details
+                        class={`faq-item reveal reveal-delay-${(index % 3) + 1}`}
+                        open={index === 0}
+                    >
+                        <summary class="faq-question">
+                            <h3>{item.question}</h3>
+                            <div class="faq-icon">
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M6 9L12 15L18 9"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </div>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>{item.answer}</p>
+                        </div>
+                    </details>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .faq-section {
+        background-color: var(--color-bg-secondary);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .faq-header {
+        text-align: center;
+        margin-bottom: var(--space-3xl);
+    }
+
+    .faq-grid {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .faq-item {
+        background: var(--color-white);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.04);
+        transition:
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    .faq-item:hover {
+        border-color: rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .faq-item[open] {
+        border-color: var(--color-accent-blue);
+        box-shadow: 0 8px 24px rgba(0, 122, 255, 0.06);
+    }
+
+    .faq-question {
+        padding: var(--space-xl);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        list-style: none;
+        user-select: none;
+    }
+
+    .faq-question::-webkit-details-marker {
+        display: none;
+    }
+
+    .faq-question h3 {
+        font-size: var(--font-size-lg);
+        font-weight: 600;
+        color: var(--color-text-primary);
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    .faq-icon {
+        color: var(--color-text-tertiary);
+        transition:
+            transform 0.3s ease,
+            color 0.3s ease;
+        flex-shrink: 0;
+        margin-left: var(--space-lg);
+    }
+
+    .faq-item[open] .faq-icon {
+        transform: rotate(180deg);
+        color: var(--color-accent-blue);
+    }
+
+    .faq-answer {
+        padding: 0 var(--space-xl) var(--space-xl);
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 640px) {
+        .faq-question h3 {
+            font-size: var(--font-size-md);
+        }
+
+        .faq-question {
+            padding: var(--space-lg);
+        }
+
+        .faq-answer {
+            padding: 0 var(--space-lg) var(--space-lg);
+        }
+    }
+</style>
