@@ -19,10 +19,10 @@ export const translations = {
         hero: {
             badge: 'macOS 전용 · 무료 다운로드',
             headlineBefore: '단순한 타이머를 넘어,',
-            headlineAccent: '당신의 성장',
-            headlineAfter: '을 기록하는 캘린더.',
+            headlineAccent: '당신의 하루',
+            headlineAfter: '를 기록하는 캘린더.',
             subtext1: '포모도로와 캘린더의 완벽한 조화.',
-            subtext2: 'PomoCal로 당신의 집중 시간을 시각화하세요.',
+            subtext2: 'PomoCal로 당신의 집중 시간을 극대화하세요.',
             ctaPrimary: 'Download for macOS',
             ctaVersion: 'v0.1.0',
             ctaSecondary: '자세히 알아보기',
@@ -30,36 +30,36 @@ export const translations = {
 
         // PainPoint
         painPoint: {
-            label: '왜 PomoCal인가?',
-            title1: '여러 앱을 오가며',
+            label: '왜 PomoCal일까요?',
+            title1: '혹시 여러 앱을 오가며',
             title2: '시간을 낭비하고 있진 않나요?',
             before: 'BEFORE',
             after: 'AFTER',
             apps: [
-                { name: 'TickTick', category: '할 일 관리' },
-                { name: 'Apple 캘린더', category: '일정 관리' },
-                { name: 'Focus Timer', category: '뽀모도로' },
-                { name: 'Notion / 메모앱', category: '학습 기록' },
+                { name: 'TickTick', category: '포모도로/유료' },
+                { name: 'Apple 캘린더', category: '일정 관리/무료' },
+                { name: 'Focus To Do', category: '포모도로/유료' },
+                { name: 'Notion / 메모앱', category: '학습 기록/무료' },
             ],
-            beforeDesc: '앱 전환에 집중이 끊기고, 데이터는 흩어지고, 기록은 결국 포기하게 됩니다.',
+            beforeDesc: '구독 서비스는 부담되고, 무료 버전은 아쉬워 기록을 포기하게됩니다.',
             solutionTagline: '집중, 기록, 관리를 하나로',
-            solutionBadges: ['뽀모도로', '캘린더', '할 일', '통계', '도서 연동'],
-            afterDesc: '타이머를 돌리면 캘린더에 자동 기록. 더 이상 앱을 오갈 필요가 없습니다.',
+            solutionBadges: ['뽀모도로', '캘린더', '할 일', '통계', '도서 API 연동'],
+            afterDesc: 'PomoCal로 캘린더에 자동 기록, 더 이상 앱을 오갈 필요가 없습니다.',
         },
 
         // Features
         features: {
             label: '핵심 기능',
-            title1: '집중에만 몰입할 수 있도록',
+            title1: '오직 공부에만 몰입할 수 있도록',
             title2: '나머지는 PomoCal이 합니다.',
             items: [
                 {
-                    title: '동기화된 몰입',
-                    description: '타이머가 끝나면 시스템 캘린더에 자동으로 기록됩니다. 기록하는 번거로움 없이 오직 집중하세요.',
+                    title: '가장 확실한 동기화',
+                    description: '타이머가 끝나면 iCloud 캘린더에 자동으로 기록됩니다. 기록하는 번거로움 없이 오직 공부에만 집중하세요.',
                 },
                 {
                     title: '도서 중심 학습',
-                    description: 'Google Books API 연동으로 읽고 있는 책과 연계된 학습 목표를 설정하고 관리하세요.',
+                    description: 'Naver Books API 연동으로 읽고 있는 책과 연계된 학습 목표를 설정하고 관리하세요.',
                 },
                 {
                     title: '데이터 시각화',
@@ -72,7 +72,7 @@ export const translations = {
         screenshots: {
             label: '앱 미리보기',
             title1: '직관적인 인터페이스,',
-            title2: '강력한 기능',
+            title2: '무료지만 유료앱을 뛰어넘는 기능',
             subtitle: '심플하면서도 필요한 모든 것을 담은 올인원 학습 도구',
             prevLabel: '이전',
             nextLabel: '다음',
@@ -105,17 +105,17 @@ export const translations = {
         techPrivacy: {
             label: '기술 & 프라이버시',
             title1: '신뢰할 수 있는 기술,',
-            title2: '안전한 데이터',
+            title2: '외부로 유출되지 않는 나만의 데이터',
             items: [
                 {
                     label: 'Native & Swift',
                     title: 'macOS를 위해 태어난 앱',
-                    description: 'SwiftUI로 개발된 Native 앱으로, macOS 최신 버전에서 가장 빠르고 안정적입니다. 시스템 자원을 최소한으로 사용하며 즉각적인 반응 속도를 제공합니다.',
+                    description: 'SwiftUI로 개발된 Native 앱으로, macOS 최신 버전에서 가장 빠르고 안정적입니다. 시스템 자원을 최소한으로 사용하며 빠른 반응 속도를 제공합니다.',
                 },
                 {
                     label: 'Privacy First',
-                    title: '당신의 데이터는<br/>당신의 것입니다',
-                    description: '외부 서버가 아닌 iCloud Drive와 로컬에만 저장됩니다. 어떤 학습 데이터도 외부로 전송되지 않으며, 완전한 프라이버시를 보장합니다.',
+                    title: '당신의 데이터는<br/>오로지 당신의 것입니다',
+                    description: '외부 서버가 아닌 iCloud Drive에만 저장됩니다. 어떤 학습 데이터도 외부로 전송되지 않으며, 완벽한 프라이버시를 보장합니다.',
                 },
             ],
         },
@@ -126,20 +126,24 @@ export const translations = {
             title: '궁금한 점이 있으신가요?',
             items: [
                 {
+                    question: '이 프로그램을 무료로 배포하는 이유는 무엇인가요?',
+                    answer: 'TMI이긴 하지만, 개발자의 MBTI가 극 J형이라서, 내가 공부한 내용을 직접 기록해서 시각화하는 것을 좋아합니다. 하지만, 시중에 출시되어있는 앱들의 경우 대학생들이 감당하기에는 다소 높은(?) 가격이 형성되어있어서 직접 앱을 개발하여 무료로 배포하였습니다.',
+                },
+                {
                     question: 'Windows에서도 사용할 수 있나요?',
-                    answer: '현재는 macOS 전용입니다. PomoCal은 macOS의 기본 프레임워크인 SwiftUI로 제작되어 최적의 성능을 제공합니다. 추후 Windows 및 모바일 버전 출시를 고려하고 있습니다.',
+                    answer: '현재는 macOS 전용입니다. PomoCal은 macOS의 기본 프레임워크인 SwiftUI로 제작되어 최적의 성능을 제공합니다. 추후 모바일 버전은 출시 계획에 있지만, Windows를 지원하지는 않을 예정입니다.',
                 },
                 {
                     question: '데이터가 날아가면 어떡하나요?',
-                    answer: '걱정하지 마세요. 모든 데이터는 사용자의 iCloud Drive와 로컬 기기에 안전하게 저장됩니다. 앱을 삭제하더라도 iCloud에 데이터가 남아있어 언제든지 복구할 수 있습니다.',
+                    answer: '걱정하지 마세요. 모든 데이터는 사용자의 iCloud Drive에 안전하게 저장됩니다. 앱을 삭제하더라도 iCloud에 데이터가 남아있어 언제든지 복구할 수 있습니다.',
                 },
                 {
                     question: '무료인가요?',
-                    answer: '네, 현재 베타 버전은 모든 기능을 무료로 제공하고 있습니다. 정식 출시 후에도 기본적인 포모도로 및 캘린더 기능은 평생 무료로 제공될 예정입니다.',
+                    answer: '네, 모든 기능을 무료로 제공하고 있습니다. 정식 출시 후에도 모든 기능은 평생 무료로 제공될 예정입니다.',
                 },
                 {
                     question: '다른 캘린더와 연동되나요?',
-                    answer: 'Apple 기본 캘린더(iCal)와 완벽하게 연동됩니다. 구글 캘린더나 아웃룩 일정도 Apple 캘린더에 로그인되어 있다면 PomoCal에서 그대로 확인하고 관리할 수 있습니다.',
+                    answer: 'Apple 기본 캘린더(iCal)와 완벽하게 연동됩니다. Apple 캘린더에 로그인되어 있다면 PomoCal에서 그대로 확인하고 관리할 수 있습니다.',
                 },
             ],
         },
@@ -147,11 +151,11 @@ export const translations = {
         // CTA
         cta: {
             title1: '오늘부터 당신의',
-            title2: '성장을 기록하세요',
+            title2: '성장 이야기를 기록하세요',
             desc1: 'PomoCal과 함께 집중 시간을 시각화하고,',
             desc2: '매일의 작은 성장을 확인하세요.',
             button: '무료 다운로드',
-            meta: 'macOS 13.0+ · 무료 · 오프라인 동작',
+            meta: 'macOS 13.0+ · 무료 · 오프라인 사용 가능',
         },
 
         // Footer
