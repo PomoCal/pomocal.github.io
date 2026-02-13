@@ -28,6 +28,36 @@ export const translations = {
             ctaSecondary: '자세히 알아보기',
         },
 
+        // Updates
+        updates: {
+            badge: '최신 업데이트',
+            title: 'PomoCal 1.2를 소개합니다',
+            items: [
+                {
+                    version: 'v1.2.0',
+                    date: '2026.02.13',
+                    label: '스톱워치 모드',
+                    badge: 'New',
+                    title: '자유롭게 시간을 측정하세요',
+                    description: '정해진 시간 없이 자유롭게 집중하고 싶을 때 사용하세요. 스톱워치 모드로 기록된 시간도 캘린더에 자동으로 저장됩니다.',
+                },
+                {
+                    version: 'v1.1.0',
+                    date: '2026.01.20',
+                    label: '통계 개선',
+                    title: '더 직관적인 데이터 시각화',
+                    description: '카테고리별 학습 시간을 한눈에 파악할 수 있도록 차트 디자인을 개선했습니다. 주간, 월간 통계를 더욱 쉽게 확인하세요.',
+                },
+                {
+                    version: 'v1.0.0',
+                    date: '2026.01.01',
+                    label: '캘린더 자동 연동',
+                    title: '더 이상 수동 기록은 필요 없습니다',
+                    description: '타이머가 끝나면 Apple 캘린더에 자동으로 기록됩니다. 집중하는 것 외에는 신경 쓸 필요가 없습니다.',
+                },
+            ],
+        },
+
         // PainPoint
         painPoint: {
             label: '왜 PomoCal일까요?',
@@ -216,6 +246,36 @@ export const translations = {
             ctaPrimary: 'Download for macOS',
             ctaVersion: 'v0.1.0',
             ctaSecondary: 'Learn More',
+        },
+
+        // Updates
+        updates: {
+            badge: 'What\'s New',
+            title: 'Introducing PomoCal 1.2',
+            items: [
+                {
+                    version: 'v1.2.0',
+                    date: 'Feb 13, 2026',
+                    label: 'Stopwatch Mode',
+                    badge: 'New',
+                    title: 'Measure time freely',
+                    description: 'Use stopwatch mode when you want to focus without a preset timer. Time tracked in stopwatch mode is also automatically saved to your calendar.',
+                },
+                {
+                    version: 'v1.1.0',
+                    date: 'Jan 20, 2026',
+                    label: 'Enhanced Statistics',
+                    title: 'More intuitive data visualization',
+                    description: 'We\'ve improved chart designs so you can see study time by category at a glance. Check weekly and monthly statistics more easily.',
+                },
+                {
+                    version: 'v1.0.0',
+                    date: 'Jan 1, 2026',
+                    label: 'Auto Calendar Sync',
+                    title: 'No more manual tracking',
+                    description: 'When the timer ends, it\'s automatically logged to Apple Calendar. You don\'t need to worry about anything except focusing.',
+                },
+            ],
         },
 
         // PainPoint

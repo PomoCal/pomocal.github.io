@@ -1,0 +1,423 @@
+---
+import { getLocaleFromUrl, t } from "../i18n/utils";
+
+const locale = getLocaleFromUrl(Astro.url);
+const i18n = t(locale);
+---
+
+<section class="updates-section" id="updates">
+    <div class="container">
+        <div class="updates-header reveal">
+            <span class="section-badge">{i18n.updates.badge}</span>
+            <h2 class="updates-title">{i18n.updates.title}</h2>
+        </div>
+
+        <div class="updates-bento reveal reveal-delay-1">
+            <div class="bento-glow" aria-hidden="true"></div>
+
+            <div class="bento-content">
+                <!-- Left: Tabs -->
+                <div class="updates-tabs">
+                    {
+                        i18n.updates.items.map((item, index) => (
+                            <button
+                                class={`update-tab ${index === 0 ? "active" : ""}`}
+                                data-index={index}
+                                type="button"
+                            >
+                                <div class="tab-header">
+                                    <span class="tab-version">
+                                        {item.version}
+                                    </span>
+                                    {"badge" in item && item.badge && (
+                                        <span class="tab-badge">
+                                            {item.badge}
+                                        </span>
+                                    )}
+                                </div>
+                                <div class="tab-date">{item.date}</div>
+                                <h3 class="tab-title">{item.title}</h3>
+                                <p class="tab-description">
+                                    {item.description}
+                                </p>
+                            </button>
+                        ))
+                    }
+                </div>
+
+                <!-- Right: Preview -->
+                <div class="updates-preview">
+                    {
+                        i18n.updates.items.map((item, index) => (
+                            <div
+                                class={`preview-content ${index === 0 ? "active" : ""}`}
+                                data-index={index}
+                            >
+                                <div class="preview-placeholder">
+                                    <div class="preview-icon">
+                                        <svg
+                                            width="64"
+                                            height="64"
+                                            viewBox="0 0 64 64"
+                                            fill="none"
+                                        >
+                                            <rect
+                                                width="64"
+                                                height="64"
+                                                rx="16"
+                                                fill="url(#gradient-{index})"
+                                                opacity="0.2"
+                                            />
+                                            <path
+                                                d="M32 20V32L40 36M32 44C37.5228 44 42 39.5228 42 34C42 28.4772 37.5228 24 32 24C26.4772 24 22 28.4772 22 34C22 39.5228 26.4772 44 32 44Z"
+                                                stroke="url(#gradient-{index})"
+                                                stroke-width="2.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            />
+                                            <defs>
+                                                <linearGradient
+                                                    id="gradient-{index}"
+                                                    x1="0"
+                                                    y1="0"
+                                                    x2="64"
+                                                    y2="64"
+                                                >
+                                                    <stop
+                                                        offset="0%"
+                                                        stop-color={
+                                                            index === 0
+                                                                ? "#FF6347"
+                                                                : index === 1
+                                                                  ? "#007AFF"
+                                                                  : "#34C759"
+                                                        }
+                                                    />
+                                                    <stop
+                                                        offset="100%"
+                                                        stop-color={
+                                                            index === 0
+                                                                ? "#FF8C42"
+                                                                : index === 1
+                                                                  ? "#AF52DE"
+                                                                  : "#FF6347"
+                                                        }
+                                                    />
+                                                </linearGradient>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                    <div class="preview-label">
+                                        {item.label}
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Tab switching functionality
+    const tabs = document.querySelectorAll(".update-tab");
+    const previews = document.querySelectorAll(".preview-content");
+
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            const index = tab.getAttribute("data-index");
+
+            // Update active states
+            tabs.forEach((t) => t.classList.remove("active"));
+            previews.forEach((p) => p.classList.remove("active"));
+
+            tab.classList.add("active");
+            const activePreview = document.querySelector(
+                `.preview-content[data-index="${index}"]`,
+            );
+            if (activePreview) {
+                activePreview.classList.add("active");
+            }
+        });
+    });
+</script>
+
+<style>
+    .updates-section {
+        padding: var(--space-5xl) 0;
+        background: var(--color-bg);
+    }
+
+    .updates-header {
+        text-align: center;
+        margin-bottom: var(--space-3xl);
+    }
+
+    .updates-title {
+        font-size: var(--font-size-4xl);
+        font-weight: 800;
+        color: var(--color-text-primary);
+        letter-spacing: -0.025em;
+        margin-top: var(--space-md);
+    }
+
+    /* Bento Box Container */
+    .updates-bento {
+        position: relative;
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        border-radius: 32px;
+        padding: var(--space-2xl);
+        overflow: hidden;
+        box-shadow:
+            0 20px 60px rgba(0, 0, 0, 0.06),
+            0 8px 20px rgba(0, 0, 0, 0.04),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .bento-glow {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        opacity: 0.5;
+    }
+
+    .bento-glow::before {
+        content: "";
+        position: absolute;
+        top: -30%;
+        right: -10%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+            circle,
+            rgba(175, 82, 222, 0.15) 0%,
+            transparent 70%
+        );
+        filter: blur(50px);
+        animation: glow-float-1 12s ease-in-out infinite;
+    }
+
+    .bento-glow::after {
+        content: "";
+        position: absolute;
+        bottom: -20%;
+        left: -5%;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(
+            circle,
+            rgba(0, 122, 255, 0.12) 0%,
+            transparent 70%
+        );
+        filter: blur(50px);
+        animation: glow-float-2 14s ease-in-out infinite;
+    }
+
+    @keyframes glow-float-1 {
+        0%,
+        100% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(-30px, 20px);
+        }
+    }
+
+    @keyframes glow-float-2 {
+        0%,
+        100% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(30px, -20px);
+        }
+    }
+
+    .bento-content {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: var(--space-3xl);
+        min-height: 480px;
+    }
+
+    /* Tabs (Left Column) */
+    .updates-tabs {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .update-tab {
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 16px;
+        padding: var(--space-lg);
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+    }
+
+    .update-tab:hover {
+        background: rgba(255, 255, 255, 0.6);
+        border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .update-tab.active {
+        background: #ffffff;
+        border-color: rgba(0, 0, 0, 0.1);
+        box-shadow:
+            0 8px 24px rgba(0, 0, 0, 0.08),
+            0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .tab-header {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-xs);
+    }
+
+    .tab-version {
+        font-size: var(--font-size-sm);
+        font-weight: 600;
+        color: var(--color-text-secondary);
+        font-family: "SF Mono", "Monaco", monospace;
+    }
+
+    .tab-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        background: linear-gradient(135deg, #007aff 0%, #5856d6 100%);
+        color: white;
+        font-size: var(--font-size-xs);
+        font-weight: 600;
+        border-radius: var(--radius-full);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    .tab-date {
+        font-size: var(--font-size-xs);
+        color: var(--color-text-tertiary);
+        margin-bottom: var(--space-sm);
+    }
+
+    .tab-title {
+        font-size: var(--font-size-lg);
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-xs);
+        line-height: 1.3;
+    }
+
+    .tab-description {
+        font-size: var(--font-size-sm);
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        opacity: 0.6;
+        transition: opacity 0.3s ease;
+    }
+
+    .update-tab.active .tab-description {
+        opacity: 1;
+    }
+
+    /* Preview (Right Column) */
+    .updates-preview {
+        position: relative;
+        background: linear-gradient(135deg, #f0f2f5 0%, #fafbfc 100%);
+        border-radius: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .preview-content {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transform: scale(0.95);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+    }
+
+    .preview-content.active {
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: auto;
+    }
+
+    .preview-placeholder {
+        text-align: center;
+    }
+
+    .preview-icon {
+        margin-bottom: var(--space-lg);
+        animation: preview-float 3s ease-in-out infinite;
+    }
+
+    @keyframes preview-float {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .preview-label {
+        font-size: var(--font-size-xl);
+        font-weight: 700;
+        color: var(--color-text-primary);
+        opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+        .bento-content {
+            grid-template-columns: 1fr;
+            gap: var(--space-2xl);
+        }
+
+        .updates-preview {
+            min-height: 320px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .updates-bento {
+            padding: var(--space-lg);
+            border-radius: 24px;
+        }
+
+        .updates-title {
+            font-size: var(--font-size-3xl);
+        }
+
+        .bento-content {
+            min-height: auto;
+        }
+
+        .tab-title {
+            font-size: var(--font-size-base);
+        }
+
+        .tab-description {
+            font-size: var(--font-size-xs);
+        }
+    }
+</style>
