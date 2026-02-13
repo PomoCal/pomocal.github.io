@@ -1,43 +1,46 @@
-# Astro Starter Kit: Minimal
+# 🌐 PomoCal 공식 랜딩 페이지
 
-```sh
-npm create astro@latest -- --template minimal
-```
+macOS 전용 학습 도구, **PomoCal**의 공식 소개 사이트 소스 코드입니다.  
+이 사이트는 [https://pomocal.github.io/](https://pomocal.github.io/)에서 확인할 수 있습니다.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🛠 Tech Stack
 
-## 🚀 Project Structure
+최대한 가볍고 빠르게 페이지를 띄우기 위해 **Astro**를 사용했습니다.
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Framework**: [Astro v5.1.7](https://astro.build/)
+- **Styling**: Standard CSS (Global)
+- **Deployment**: GitHub Pages
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## 🚀 로컬 실행 방법
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+이 프로젝트를 로컬에서 수정하거나 확인하려면 아래 과정을 따라주세요.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+1. **의존성 설치**
+   ```sh
+   npm install
+   ```
 
-Any static assets, like images, can be placed in the `public/` directory.
+2. **개발 서버 실행**
+   ```sh
+   npm run dev
+   ```
+   실행 후 `http://localhost:4321`에서 결과를 확인할 수 있습니다.
 
-## 🧞 Commands
+3. **빌드**
+   ```sh
+   npm run build
+   ```
 
-All commands are run from the root of the project, from a terminal:
+## 📂 프로젝트 구조
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- `src/pages/`: 다국어(KO, EN) 페이지 라우팅이 설정되어 있습니다.
+- `src/components/`: Hero, Features 등 섹션별 컴포넌트가 분리되어 있습니다.
+- `src/i18n/`: 한국어와 영어를 지원하기 위한 번역 파일이 포함되어 있습니다.
+- `public/`: 앱 다운로드 파일(.dmg)과 이미지 리소스가 담겨 있습니다.
 
-## 👀 Want to learn more?
+## 🔗 관련 프로젝트
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- [PomoCal Core](https://github.com/PomoCal/pomocal_core): SwiftUI로 작성된 실제 macOS 앱 소스 코드입니다. (준비 중)
+
+---
+*개인적으로 필요해서 시작한 프로젝트인 만큼, 제안이나 버그 제보는 언제나 환영합니다.*
